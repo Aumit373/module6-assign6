@@ -207,4 +207,12 @@ Browse: `http://ostad.local`
 
 ---
 
-🛡️ **This README is designed for development and educational purposes on local KIND clusters.**
+🛡️ This README is designed for development and educational purposes on local KIND clusters.
+
+-> docker destop,kubectl -> settings->kubarnetes-> kubeadm
+
+-> namespace , secret, configmap,
+
+-> deployyment,service .....
+
+-> service (mongo :clusterIP) mongo-express : loadbalancer backend : loadbalancer UI : loadbalancer nginx-Ingress : etc/host -> local url
