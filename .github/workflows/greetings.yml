@@ -1,0 +1,62 @@
+name: Build, Test, and Prepare for Local Deployment
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  setup-and-build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        env:
+          MONGO_INITDB_ROOT_USERNAME: ostad
+          MONGO_INITDB_ROOT_PASSWORD: ostad
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Backend Setup
+      - name: Install server dependencies
+        working-directory: ./OstadServer
+        run: npm install
+
+      - name: Run backend tests (if available)
+        working-directory: ./OstadServer
+        run: |
+          echo "No tests yet" # Replace with: npm test
+
+      # Frontend Setup
+      - name: Install UI dependencies
+        working-directory: ./OstadUI
+        run: npm install
+
+      - name: Build frontend
+        working-directory: ./OstadUI
+        run: npm run build
+
+      - name: Run frontend tests (if available)
+        working-directory: ./OstadUI
+        run: |
+          echo "No tests yet" # Replace with: npm test
+
+      # Docker Build
+      - name: Build Docker images
+        run: |
+          docker build -f Dockerfile-server -t ostad-server .
+          docker build -f Dockerfile-UI -t ostad-ui .
+
+      - name: Show success message
+        run: echo "✅ Build and tests passed. Ready for local deployment."

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-server
+  namespace: ostad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ostad-server
+  template:
+    metadata:
+      labels:
+        app: ostad-server
+    spec:
+      containers:
+        - name: ostad-server
+          image: arif0ahammed0reza/ostad-server:latest
+          ports: 
+            - containerPort: 5050
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-config
+                  key: mongo-uri
+            

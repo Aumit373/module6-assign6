@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+  namespace: ostad
+data:
+  mongo-uri: mongodb://ostad:ostad@mongo:27017/ostad
