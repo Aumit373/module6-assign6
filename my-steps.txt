@@ -29,3 +29,4 @@ kubectl port-forward service/ostad-server -n aumit 5050:5050
 
 #Check all localhost ports
 
+0

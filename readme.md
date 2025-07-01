@@ -216,3 +216,22 @@ Browse: `http://ostad.local`
 -> deployyment,service .....
 
 -> service (mongo :clusterIP) mongo-express : loadbalancer backend : loadbalancer UI : loadbalancer nginx-Ingress : etc/host -> local url
+
+
+namespace.yaml - defines the name of the kluster
+kind-cluster.yaml - containd the api version and the host and container ports
+
+mongo-confimap - mongo configuration
+secrets.yaml - contain the db passwords in base 64 encrypted user name and passwords which can be used in other files
+
+mongo-service - service info with port numbers
+mongo-deployments - contains the pod name, dockerimage path, number of replicated to be deployed and the call for mongodb username and password.
+
+mongo-express-service - service info with port numbers
+mongo-express-deployments - contains the pod name, dockerimage path, number of replicated to be deployed and the call for mongodb username and password.
+
+ostad-backend-service - service info with port numbers
+ostad-backend-deployments - contains the pod name, dockerimage path, number of replicated to be deployed and the call for mongodb username and password.
+
+ostad-backend-service - service info with port numbers
+ostad-backend-deployments - contains the pod name, dockerimage path, number of replicated to be deployed and the call for mongodb username and password.
