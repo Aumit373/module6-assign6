@@ -1,0 +1,31 @@
+run docker desktop
+run choco install kind
+
+Create and check kind cluster:
+kind create cluster --name aumit --config kind-cluster.yaml
+kubectl cluster-info --context kind-aumit
+
+kubectl apply -f namespace.yaml
+
+kubectl apply -f mongo-deployment.yaml
+kubectl apply -f mongo-service.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/kind/deploy.yaml
+
+kubectl apply -f ingress.yaml
+
+#check cluster and pod status
+kind get cluster --info
+kubectl get pods -o wide -A
+
+kubectl get pods -n ingress-nginx
+
+kubectl apply -f mongo-express-deployment.yaml
+kubectl apply -f mongo-express-service.yaml
+
+kubectl apply -f .
+kubectl get svc -n aumit
+kubectl port-forward service/ostad-server -n aumit 5050:5050
+
+#Check all localhost ports
+

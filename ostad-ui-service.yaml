@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ostad-server
+  name: ostad-ui
   namespace: aumit
 spec:
   type: LoadBalancer
   selector:
-    app: ostad-server
+    app: ostad-ui
   ports:
-    - port: 5050
-      targetPort: 5050
+    - port: 5173
+      targetPort: 5173

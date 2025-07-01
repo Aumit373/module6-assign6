@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ostad-server
+  name: ostad-ui
   namespace: aumit
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ostad-server
+      app: ostad-ui
   template:
     metadata:
       labels:
-        app: ostad-server
+        app: ostad-ui
     spec:
       containers:
-        - name: ostad-server
-          image: aumit373/ostad-server:latest
-          ports:
-            - containerPort: 5050
+        - name: ostad-ui
+          image: aumit373/ostad-ui:latest
+          ports: 
+            - containerPort: 5173
           env:
             - name: MONGO_URI
               valueFrom:
